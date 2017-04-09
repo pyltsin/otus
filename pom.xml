@@ -7,6 +7,10 @@
     <name>java-2017-04-pyltsin</name>
     <description>I try to learn Java</description>
 
+    <groupId>ru.otus</groupId>
+    <artifactId>java-2017-04-pyltsin</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
 
     <developers>
         <developer>
@@ -22,9 +26,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    <groupId>ru.otus</groupId>
-    <artifactId>java-2017-04-pyltsin</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
@@ -62,6 +63,12 @@
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>ru.otus.lottery.Main</mainClass>
+                                </manifest>
+                            </archive>
+
                         </configuration>
                     </execution>
                 </executions>
@@ -80,13 +87,14 @@
                             <proguardVersion>${net.sf.proguard.version}</proguardVersion>
                             <obfuscate>true</obfuscate>
                             <options>
+                                <option>-keep,includedescriptorclasses class javax.** { *; }</option>
+                                <option>-keep,includedescriptorclasses class org.** { *; }</option>
                                 <option>-allowaccessmodification</option>
-                                <option>-dontoptimize</option>
-                                <!--<option>-dontshrink</option>-->
-                                <!--<option>-dontnote</option>-->
-                                <!--<option>-dontwarn</option> &lt;!&ndash; added option to ignore com.sun missing classes &ndash;&gt;-->
-                                <!--<option>-keepattributes Signature</option>-->
-                                <option>-keep class ru.otus.pyltsin.Main { *; }</option>
+                                <option>-keep public class ru.otus.lottery.Main {public static void main(java.lang.String[]);}</option>
+                                <option>-keepclassmembers class * implements java.io.Serializable</option>
+                                <option>-keepattributes *Annotation*</option>
+                                <option>-keepattributes Signature</option>
+                                <option>-dontwarn</option>
                             </options>
                             <libs>
                                 <lib>${java.home}/lib/rt.jar</lib>
