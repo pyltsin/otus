@@ -1,4 +1,4 @@
-package ru.otus.pyltsin;
+package ru.otus.pyltsin.HW1_1;
 
 import au.com.bytecode.opencsv.CSVReader;
 

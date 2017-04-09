@@ -1,6 +1,7 @@
 package ru.otus.pyltsin;
 
 import org.junit.Test;
+import ru.otus.pyltsin.HW1_1.Pi;
 
 import static junit.framework.TestCase.assertEquals;
 
