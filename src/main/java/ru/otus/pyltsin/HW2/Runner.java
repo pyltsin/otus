@@ -1,7 +1,7 @@
 package ru.otus.pyltsin.HW2;
 
-import ru.otus.pyltsin.HW2.StandSize.AbstractStandSize;
 import ru.otus.pyltsin.HW2.StandSize.FactoryStandSize;
+import ru.otus.pyltsin.HW2.StandSize.Interfaces.StandSize;
 
 import java.lang.management.ManagementFactory;
 
@@ -18,7 +18,7 @@ public class Runner {
 
 
         System.out.println("Size object (8 bytes)");
-        AbstractStandSize standSize = new FactoryStandSize(() -> new Object());
+        StandSize standSize = new FactoryStandSize(() -> new Object());
         long sizeObject = standSize.getSizeObject();
         System.out.println("Final size object: " + sizeObject);
 
