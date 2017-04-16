@@ -1,16 +1,20 @@
 package ru.otus.pyltsin.HW3.MyCollection;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.*;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by Pyltsin on 16.04.2017. Algo8
+ * Created by Pyltsin on 16.04.2017.
  */
 public class MyArrayListTest {
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
     private MyArrayList<Integer> myArrayList;
 
     @Before
@@ -43,11 +47,21 @@ public class MyArrayListTest {
     }
 
     @Test
+    public void containsEmpty() throws Exception {
+        assertFalse(myArrayList.contains(5));
+    }
+
+    @Test
     public void toArray() throws Exception {
         myArrayList.add(1);
         myArrayList.add(2);
         myArrayList.add(3);
         assertArrayEquals(new Integer[]{1, 2, 3}, myArrayList.toArray());
+    }
+
+    @Test
+    public void toArrayEmpty() throws Exception {
+        assertArrayEquals(new Integer[]{}, myArrayList.toArray());
     }
 
     @Test
@@ -59,6 +73,63 @@ public class MyArrayListTest {
         for (int i = 0; i < max; i++) {
             assertEquals(new Integer(i + 1), myArrayList.get(i));
         }
+    }
+
+    @Test
+    public void addGetSetRemoveException() throws Exception {
+        int max = 1_000_000;
+        for (int i = 0; i < max; i++) {
+            myArrayList.add(i + 1);
+        }
+
+        try {
+            myArrayList.set(1_100_000, 1);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            myArrayList.set(-1, 1);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            myArrayList.add(1_100_000, 1);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            myArrayList.add(-1, 1);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            myArrayList.get(1_100_000);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            myArrayList.get(-1);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            myArrayList.remove(1_100_000);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
+
+        try {
+            myArrayList.remove(-1);
+            fail("Expected an ArrayIndexOutOfBoundsException to be thrown");
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
+
     }
 
     @Test
