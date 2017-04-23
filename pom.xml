@@ -51,6 +51,13 @@
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>ru.otus.pyltsin.HW4.Runner</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
                 <executions>
                     <execution>
                         <id>assembly</id>
