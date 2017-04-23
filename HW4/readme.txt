@@ -18,10 +18,11 @@
 Выходные данные пишутся в файлы jvm....out
 
 Получены следующие результаты:
+    При падении
     G1GC
         Size list: 18598760
-        G1 Young Generation, sum duration : 4080 ms, sum count: 40, time: 2.9978993280333337 min
-        G1 Old Generation, sum duration : 5258 ms, sum count: 5, time: 2.9979037756166664 min
+        G1 Young Generation, sum duration : 2751 ms, sum count: 34, time: 2.3823095688333336 min
+        G1 Old Generation, sum duration : 5173 ms, sum count: 5, time: 2.417518108583333 min
 
     Standart (PS Scavenge
               PS MarkSweep) - не упал, зато подвесил процесс
@@ -34,5 +35,23 @@
         Size list: 17848810
         ParNew, sum duration : 1344 ms, sum count: 26, time: 2.4114773955 min
         ConcurrentMarkSweep, sum duration : 44902 ms, sum count: 24, time: 2.5167393604833337 min
+
+
+    При Size list: 13499100
+    G1GC
+        G1 Young Generation, sum duration : 795 ms, sum count: 15, time: 1.6557977636999999 min
+        OLD - нет
+
+    Standart (PS Scavenge
+              PS MarkSweep)
+        PS Scavenge, sum duration : 539 ms, sum count: 5, time: 1.2843663137499999 min
+        PS MarkSweep, sum duration : 5092 ms, sum count: 2, time: 1.6389273277166667 min
+
+    ConcurrentMarkSweep(ParNew
+                        ConcurrentMarkSweep)
+        ParNew, sum duration : 872 ms, sum count: 13, time: 1.683336612 min
+        ConcurrentMarkSweep, sum duration : 17447 ms, sum count: 9, time: 1.6854245470666667 min
+
+
 
 
