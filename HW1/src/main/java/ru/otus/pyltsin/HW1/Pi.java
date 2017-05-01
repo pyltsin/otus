@@ -1,4 +1,4 @@
-package ru.otus.pyltsin.HW1_1;
+package ru.otus.pyltsin.HW1;
 
 /**
  * Created by tully.

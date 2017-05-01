@@ -1,9 +1,6 @@
-package ru.otus.pyltsin.HW1_1;
-
-import au.com.bytecode.opencsv.CSVReader;
+package ru.otus.pyltsin.HW1;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class Main {
         List<String> testList = new ArrayList<>();
 
         //add csv for example
-        CSVReader reader = new CSVReader(new FileReader("test"));
+//        CSVReader reader = new CSVReader(new FileReader("test"));
 
     }
 }

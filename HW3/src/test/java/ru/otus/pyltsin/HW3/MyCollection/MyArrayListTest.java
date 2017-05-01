@@ -1,5 +1,6 @@
 package ru.otus.pyltsin.HW3.MyCollection;
 
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,7 +11,7 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 /**
- * Created by Pyltsin on 16.04.2017.
+ * Created by Pyltsin on 01.05.2017. Algo8
  */
 public class MyArrayListTest {
     @Rule

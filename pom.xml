@@ -3,10 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
 
     <name>java-2017-04-pyltsin</name>
     <description>I try to learn Java</description>
+    <groupId>ru.otus</groupId>
+    <artifactId>java-2017-04-pyltsin</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
+
+    <modules>
+        <module>HW1</module>
+        <module>HW2</module>
+        <module>HW3</module>
+        <module>HW4</module>
+    </modules>
 
     <developers>
         <developer>
@@ -16,28 +27,17 @@
 
     <properties>
         <junit.version>RELEASE</junit.version>
-        <proguard-maven-plugin.version>2.0.14</proguard-maven-plugin.version>
-        <net.sf.opencsv.version>2.3</net.sf.opencsv.version>
-        <net.sf.proguard.version>5.3.2</net.sf.proguard.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    <groupId>ru.otus</groupId>
-    <artifactId>java-2017-04-pyltsin</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>net.sf.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>${net.sf.opencsv.version}</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -48,30 +48,6 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>ru.otus.pyltsin.HW4.Runner</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>assembly</id>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
