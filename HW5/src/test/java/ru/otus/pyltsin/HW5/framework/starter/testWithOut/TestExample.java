@@ -9,7 +9,7 @@ import ru.otus.pyltsin.HW5.framework.asserts.Asserts;
  * Created by Pyltsin on 01.05.2017.
  */
 @Test
-class TestExample {
+public class TestExample {
     private int i = 0;
 
     @Before

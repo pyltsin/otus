@@ -20,7 +20,7 @@ public class TestClassTrue {
       test for before - i==0;
      */
     public void testBefore() {
-        assertEquals(0, i);
+        i = 0;
         i++;
     }
 
@@ -38,7 +38,7 @@ public class TestClassTrue {
 
     @After
     public void after() {
-        assertEquals(3, i);
+        assertEquals(2, i);
     }
 
 }
