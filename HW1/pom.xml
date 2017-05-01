@@ -48,7 +48,8 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ru.otus.pyltsin.HW4.Runner</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>ru.otus.pyltsin.HW1.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
