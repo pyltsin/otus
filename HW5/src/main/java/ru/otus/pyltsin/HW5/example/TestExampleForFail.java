@@ -12,4 +12,11 @@ public class TestExampleForFail {
     public void test() {
         Asserts.assertEquals("TestExampleForFail.test Must Fail", 1, 2);
     }
+
+
+    @Test
+    public void testFail() {
+        Asserts.fail("TestExample.testFail Must Fail");
+    }
+
 }

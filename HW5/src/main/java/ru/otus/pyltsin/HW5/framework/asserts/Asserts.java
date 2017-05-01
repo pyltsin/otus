@@ -28,4 +28,16 @@ public class Asserts {
         }
     }
 
+    public static void fail(String testName) {
+        printFalse(testName, "not fail", "fail");
+    }
+
+
+    public static void assertNotNull(String testName, Object object) {
+        if (object != null) {
+            printOk(testName);
+        } else {
+            printFalse(testName, "notNull", object);
+        }
+    }
 }

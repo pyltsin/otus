@@ -36,6 +36,13 @@ class TestExample {
         i++;
     }
 
+    @Test
+    public void testNotNull() {
+        Asserts.assertNotNull("TestExample.testNotNull Must pass", 1);
+        i++;
+    }
+
+
     @After
     public void after() {
         Asserts.assertEquals("TestExample.after Must pass", 2, i);
