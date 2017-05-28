@@ -16,6 +16,13 @@ public class SimpleObject {
     private Map<String, Double> map;
     private transient String nonPrint;
 
+    private SimpleObject simpleObject;
+
+
+    public void setSimpleObject(SimpleObject simpleObject) {
+        this.simpleObject = simpleObject;
+    }
+
     public Double getADouble() {
         return aDouble;
     }

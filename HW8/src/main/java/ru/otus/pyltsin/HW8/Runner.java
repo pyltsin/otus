@@ -14,8 +14,9 @@ import java.util.Map;
  */
 public class Runner {
     public static void main(String[] args) {
+        SimpleObject simpleObjectParent = new SimpleObject();
         SimpleObject simpleObject = new SimpleObject();
-        simpleObject.setI(5);
+        simpleObjectParent.setI(5);
         simpleObject.setString("test");
         simpleObject.setBool(true);
         simpleObject.setDoubles(new double[]{1.0, 2.5});
@@ -29,16 +30,18 @@ public class Runner {
         map.put("two", 2.0);
         simpleObject.setMap(map);
         simpleObject.setNonPrint("not pint");
-        System.out.println(simpleObject);
+        simpleObjectParent.setSimpleObject(simpleObject);
+
+        System.out.println(simpleObjectParent);
         Gson gson = new Gson();
-        String json = gson.toJson(simpleObject);
+        String json = gson.toJson(simpleObjectParent);
         System.out.println(json);
 
 
         MyGson myGson = new MyGsonImpl();
         String myJson = null;
         try {
-            myJson = myGson.toJson(simpleObject);
+            myJson = myGson.toJson(simpleObjectParent);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

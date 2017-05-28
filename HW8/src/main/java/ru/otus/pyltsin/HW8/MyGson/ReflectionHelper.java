@@ -11,11 +11,21 @@ class ReflectionHelper {
     private static final Set<Class<?>> WRAPPER_TYPES_BOOLEAN = getWrapperTypesBoolean();
     private static final Set<Class<?>> WRAPPER_TYPES_INT = getWrapperTypesInt();
     private static final Set<Class<?>> WRAPPER_TYPES_DOUBLE = getWrapperTypesDouble();
+    private static final Set<Class<?>> WRAPPER_TYPES_LONG = getWrapperTypesLong();
+    private static final Set<Class<?>> WRAPPER_TYPES_CHAR = getWrapperTypesChar();
+
+    private static Set<Class<?>> getWrapperTypesChar() {
+        Set<Class<?>> ret = new HashSet<>();
+        ret.add(Character.class);
+        ret.add(char.class);
+        return ret;
+    }
 
 
     public static boolean isWrapperOrPrimitivesType(Class<?> clazz) {
         return WRAPPER_TYPES_STRING.contains(clazz) || WRAPPER_TYPES_BOOLEAN.contains(clazz) ||
-                WRAPPER_TYPES_INT.contains(clazz) || WRAPPER_TYPES_DOUBLE.contains(clazz);
+                WRAPPER_TYPES_INT.contains(clazz) || WRAPPER_TYPES_DOUBLE.contains(clazz) ||
+                WRAPPER_TYPES_LONG.contains(clazz) || WRAPPER_TYPES_CHAR.contains(clazz);
     }
 
 
@@ -58,6 +68,13 @@ class ReflectionHelper {
         return ret;
     }
 
+    private static Set<Class<?>> getWrapperTypesLong() {
+        Set<Class<?>> ret = new HashSet<>();
+        ret.add(Long.class);
+        ret.add(long.class);
+        return ret;
+    }
+
     private static Set<Class<?>> getWrapperTypesInt() {
         Set<Class<?>> ret = new HashSet<>();
         ret.add(Character.class);
@@ -73,14 +90,19 @@ class ReflectionHelper {
 
     private static Set<Class<?>> getWrapperTypesDouble() {
         Set<Class<?>> ret = new HashSet<>();
-        ret.add(Long.class);
         ret.add(Float.class);
         ret.add(Double.class);
-        ret.add(long.class);
         ret.add(float.class);
         ret.add(double.class);
         return ret;
     }
 
 
+    public static boolean isChar(Class<?> type) {
+        return iterForWrap(type, WRAPPER_TYPES_CHAR);
+    }
+
+    public static boolean isLong(Class<?> type) {
+        return iterForWrap(type, WRAPPER_TYPES_LONG);
+    }
 }
