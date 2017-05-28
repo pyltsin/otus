@@ -91,7 +91,6 @@ public class MyGsonImpl implements MyGson {
                 Object arrayElement = Array.get(array, i);
 
                 if (arrayElement == null) {
-                    jsonArrayBuilder.addNull();
                     continue;
                 }
 
@@ -156,12 +155,14 @@ public class MyGsonImpl implements MyGson {
 
         Class<?> type = value.getClass();
 
-        if (ReflectionHelper.isString(type)) {
-            jsonArrayBuilder.add((String) value);
+        if (ReflectionHelper.isString(type) || ReflectionHelper.isChar(type)) {
+            jsonArrayBuilder.add(String.valueOf(value) );
         } else if (ReflectionHelper.isInteger(type)) {
-            jsonArrayBuilder.add((int) value);
+            jsonArrayBuilder.add(Integer.parseInt(String.valueOf(value)));
+        } else if (ReflectionHelper.isLong(type)) {
+            jsonArrayBuilder.add( (long) value);
         } else if (ReflectionHelper.isDouble(type)) {
-            jsonArrayBuilder.add((double) value);
+            jsonArrayBuilder.add(Double.valueOf(value.toString()));
         } else if (ReflectionHelper.isBool(type)) {
             jsonArrayBuilder.add((boolean) value);
         } else {
