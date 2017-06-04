@@ -1,9 +1,9 @@
 package ru.otus.pyltsin.HW9.dao;
 
+import org.apache.ibatis.jdbc.ScriptRunner;
 import org.junit.Before;
 import org.junit.Test;
 import ru.otus.pyltsin.HW9.Helper.ConnectionHelper;
-import ru.otus.pyltsin.HW9.Helper.ScriptRunner;
 import ru.otus.pyltsin.HW9.Runner;
 import ru.otus.pyltsin.HW9.common.User;
 
@@ -20,7 +20,7 @@ public class MyExecutorUserTest {
     @Before
     public void setUp() throws Exception {
         Connection connection = ConnectionHelper.getConnection();
-        ScriptRunner runner = new ScriptRunner(connection, false, true);
+        ScriptRunner runner = new ScriptRunner(connection);
         InputStreamReader inputStreamReader1 = new InputStreamReader(Runner.class.getClassLoader().getResourceAsStream("create_schema.sql"));
         InputStreamReader inputStreamReader2 = new InputStreamReader(Runner.class.getClassLoader().getResourceAsStream("generate_content.sql"));
         runner.runScript(new BufferedReader(inputStreamReader1));
