@@ -1,6 +1,9 @@
 package ru.otus.pyltsin.HW8.MyGson;
 
-import javax.json.*;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -26,7 +29,6 @@ public class MyGsonImpl implements MyGson {
     }
 
     private JsonValue addObject(Object obj) throws IllegalAccessException {
-
 
 
         if (obj.getClass().isArray()) {
@@ -133,7 +135,7 @@ public class MyGsonImpl implements MyGson {
 
 
         if (ReflectionHelper.isString(type) || ReflectionHelper.isChar(type)) {
-            jsonObjectBuilder.add(name, String.valueOf(value) );
+            jsonObjectBuilder.add(name, String.valueOf(value));
         } else if (ReflectionHelper.isInteger(type)) {
             jsonObjectBuilder.add(name, Integer.parseInt(String.valueOf(value)));
         } else if (ReflectionHelper.isLong(type)) {
@@ -156,11 +158,11 @@ public class MyGsonImpl implements MyGson {
         Class<?> type = value.getClass();
 
         if (ReflectionHelper.isString(type) || ReflectionHelper.isChar(type)) {
-            jsonArrayBuilder.add(String.valueOf(value) );
+            jsonArrayBuilder.add(String.valueOf(value));
         } else if (ReflectionHelper.isInteger(type)) {
             jsonArrayBuilder.add(Integer.parseInt(String.valueOf(value)));
         } else if (ReflectionHelper.isLong(type)) {
-            jsonArrayBuilder.add( (long) value);
+            jsonArrayBuilder.add((long) value);
         } else if (ReflectionHelper.isDouble(type)) {
             jsonArrayBuilder.add(Double.valueOf(value.toString()));
         } else if (ReflectionHelper.isBool(type)) {
