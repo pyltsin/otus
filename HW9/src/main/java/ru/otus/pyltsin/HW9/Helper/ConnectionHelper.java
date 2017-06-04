@@ -11,7 +11,7 @@ import java.util.Properties;
  */
 public class ConnectionHelper {
 
-    public static Properties getProperties() throws IOException {
+    private static Properties getProperties() throws IOException {
         Properties properties = new Properties();
         properties.load(ConnectionHelper.class.getClassLoader().getResourceAsStream("mysql.properties"));
         return properties;
@@ -28,8 +28,7 @@ public class ConnectionHelper {
 
             Class.forName(driver);
 
-            Connection connection = DriverManager.getConnection(url, user, password);
-            return connection;
+            return DriverManager.getConnection(url, user, password);
         } catch (SQLException | IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

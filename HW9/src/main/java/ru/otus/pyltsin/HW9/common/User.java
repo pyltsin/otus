@@ -8,43 +8,44 @@ import javax.persistence.*;
 @Entity
 @Table(name = "USERS")
 public class User {
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
 
     @Id
-
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idUser;
     @Column(name = "name")
-    private String name;
+    private String nameUser;
     @Column(name = "age")
-    private int age;
+    private int ageUser;
 
     public User() {
     }
 
     public long getId() {
-        return id;
+        return idUser;
     }
 
     public String getName() {
-        return name;
+        return nameUser;
     }
 
     public int getAge() {
-        return age;
+        return ageUser;
+    }
+
+    public void setName(String name) {
+        this.nameUser = name;
+    }
+
+    public void setAge(int age) {
+        this.ageUser = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                ", name='" + nameUser + '\'' +
+                ", age=" + ageUser +
+                '}';
     }
 }

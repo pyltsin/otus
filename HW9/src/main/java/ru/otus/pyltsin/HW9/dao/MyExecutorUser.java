@@ -79,7 +79,7 @@ public class MyExecutorUser implements ExecutorUser {
             values.append(")");
 
             String sql = insert + column.toString() + values.toString();
-            try (Statement s = connection.createStatement();) {
+            try (Statement s = connection.createStatement()) {
                 s.execute(sql);
 
                 connection.commit();
@@ -133,9 +133,9 @@ public class MyExecutorUser implements ExecutorUser {
     }
 
     private User readFromDB(String sql, Class<?> clazz) throws SQLException {
-        User userOut = null;
+        User userOut;
         Connection connection = ConnectionHelper.getConnection();
-        try (Statement statement = connection.createStatement();) {
+        try (Statement statement = connection.createStatement()) {
 
             ResultSet rs = statement.executeQuery(sql);
 
