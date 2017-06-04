@@ -9,7 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.lang.reflect.Field;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 
 /**
@@ -76,10 +79,11 @@ public class MyExecutorUser implements ExecutorUser {
             values.append(")");
 
             String sql = insert + column.toString() + values.toString();
-            Statement s = connection.createStatement();
-            s.execute(sql);
+            try (Statement s = connection.createStatement();) {
+                s.execute(sql);
 
-            connection.commit();
+                connection.commit();
+            }
             connection.close();
         } catch (SQLException e) {
             try {
@@ -117,7 +121,7 @@ public class MyExecutorUser implements ExecutorUser {
             columns.append(getName(field)).append(",");
         }
 
-        columns.deleteCharAt(columns.length()-1);
+        columns.deleteCharAt(columns.length() - 1);
         String sql = columns.toString() + nameSql;
 
         try {
@@ -129,12 +133,14 @@ public class MyExecutorUser implements ExecutorUser {
     }
 
     private User readFromDB(String sql, Class<?> clazz) throws SQLException {
+        User userOut = null;
         Connection connection = ConnectionHelper.getConnection();
-        Statement statement = connection.createStatement();
+        try (Statement statement = connection.createStatement();) {
 
-        ResultSet rs = statement.executeQuery(sql);
+            ResultSet rs = statement.executeQuery(sql);
 
-        User userOut = buildObject(rs, clazz);
+            userOut = buildObject(rs, clazz);
+        }
         connection.close();
 
         return userOut;
@@ -143,14 +149,18 @@ public class MyExecutorUser implements ExecutorUser {
     private User buildObject(ResultSet rs, Class<?> clazz) {
         try {
 
-            rs.next();
+            boolean flagNotNull = rs.next();
+            if (!flagNotNull) {
+                return null;
+            }
+
             Object obj = clazz.newInstance();
 
             for (int i = 0; i < clazz.getDeclaredFields().length; i++) {
                 Field field = clazz.getDeclaredFields()[i];
                 boolean flag = field.isAccessible();
                 field.setAccessible(true);
-                Object val = rs.getObject(i+1);
+                Object val = rs.getObject(i + 1);
                 field.set(obj, val);
                 field.setAccessible(flag);
             }
