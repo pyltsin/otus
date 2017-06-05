@@ -38,10 +38,12 @@ public class MyExecutorUser implements ExecutorUser {
             Class fieldType = field.getType();
             if (ReflectionHelper.isWrapperOrPrimitivesType(fieldType)) {
                 try {
-                    boolean flag = field.isAccessible();
-                    field.setAccessible(true);
-                    map.put(getName(field), field.get(user));
-                    field.setAccessible(flag);
+                    if (fieldType.isAnnotationPresent(Column.class)) {
+                        boolean flag = field.isAccessible();
+                        field.setAccessible(true);
+                        map.put(getName(field), field.get(user));
+                        field.setAccessible(flag);
+                    }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
