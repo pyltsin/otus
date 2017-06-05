@@ -6,6 +6,6 @@ import ru.otus.pyltsin.HW9.common.*;
  * Created by Pyltsin on 04.06.2017. Algo8
  */
 public interface ExecutorUser {
-    void save(User user);
-    User load(long id, Class<?> clazz);
+    <T extends DataSet> void save(T dataSet);
+    <T extends DataSet> T load(long id, Class<T> clazz);
 }

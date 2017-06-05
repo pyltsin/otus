@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "USERS")
-public class User {
+public class User implements DataSet {
 
     @Id
     @Column(name = "id")

@@ -2,7 +2,7 @@ package ru.otus.pyltsin.HW9.dao;
 
 import ru.otus.pyltsin.HW9.Helper.ConnectionHelper;
 import ru.otus.pyltsin.HW9.Helper.ReflectionHelper;
-import ru.otus.pyltsin.HW9.common.User;
+import ru.otus.pyltsin.HW9.common.DataSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,8 +20,8 @@ import java.util.HashMap;
  */
 public class MyExecutorUser implements ExecutorUser {
     @Override
-    public void save(User user) {
-        Class clazz = user.getClass();
+    public <T extends DataSet> void save(T dataSet){
+        Class clazz = dataSet.getClass();
         if (!clazz.isAnnotationPresent(Entity.class)) {
             throw new UnsupportedOperationException();
         }
@@ -41,7 +41,7 @@ public class MyExecutorUser implements ExecutorUser {
                     if (field.isAnnotationPresent(Column.class)) {
                         boolean flag = field.isAccessible();
                         field.setAccessible(true);
-                        map.put(getName(field), field.get(user));
+                        map.put(getName(field), field.get(dataSet));
                         field.setAccessible(flag);
                     }
                 } catch (IllegalAccessException e) {
@@ -114,7 +114,7 @@ public class MyExecutorUser implements ExecutorUser {
     }
 
     @Override
-    public User load(long id, Class<?> clazz) {
+    public <T extends DataSet> T load(long id, Class<T> clazz){
 
         String nameSql = " from " + getNameTable(clazz) + " where id=" + id;
         StringBuilder columns = new StringBuilder("select ");
@@ -134,8 +134,8 @@ public class MyExecutorUser implements ExecutorUser {
         return null;
     }
 
-    private User readFromDB(String sql, Class<?> clazz) throws SQLException {
-        User userOut;
+    private  <T extends DataSet> T  readFromDB(String sql, Class<T> clazz) throws SQLException {
+        T userOut;
         Connection connection = ConnectionHelper.getConnection();
         try (Statement statement = connection.createStatement()) {
 
@@ -148,7 +148,7 @@ public class MyExecutorUser implements ExecutorUser {
         return userOut;
     }
 
-    private User buildObject(ResultSet rs, Class<?> clazz) {
+    private  <T extends DataSet> T buildObject(ResultSet rs, Class<T> clazz) {
         try {
 
             boolean flagNotNull = rs.next();
@@ -166,7 +166,7 @@ public class MyExecutorUser implements ExecutorUser {
                 field.set(obj, val);
                 field.setAccessible(flag);
             }
-            return (User) obj;
+            return (T) obj;
 
         } catch (InstantiationException | IllegalAccessException | SQLException e) {
             e.printStackTrace();
