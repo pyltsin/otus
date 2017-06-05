@@ -13,6 +13,7 @@ public class User implements DataSet {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idUser;
+
     @Column(name = "name")
     private String nameUser;
     @Column(name = "age")
