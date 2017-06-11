@@ -1,8 +1,8 @@
-package ru.otus.pyltsin.HW9.dao;
+package ru.otus.pyltsin.HW10.DAO.MyExecutor;
 
-import ru.otus.pyltsin.HW9.Helper.ConnectionHelper;
-import ru.otus.pyltsin.HW9.Helper.ReflectionHelper;
-import ru.otus.pyltsin.HW9.common.DataSet;
+import ru.otus.pyltsin.HW10.DAO.MyExecutor.Helper.ConnectionHelper;
+import ru.otus.pyltsin.HW10.DAO.MyExecutor.Helper.ReflectionHelper;
+import ru.otus.pyltsin.HW10.common.DataSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +18,7 @@ import java.util.HashMap;
 /**
  * Created by Pyltsin on 04.06.2017. Algo8
  */
+@SuppressWarnings("Duplicates")
 public class MyExecutorUser implements ExecutorUser {
     @Override
     public <T extends DataSet> void save(T dataSet) {
@@ -132,6 +133,31 @@ public class MyExecutorUser implements ExecutorUser {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public <T extends DataSet> T findByParam(String param, String name, Class<T> clazz) {
+        long id = getIdByParam(param, name, clazz);
+        return load(id, clazz);
+    }
+
+    private <T extends DataSet> long getIdByParam(String param, String name, Class<T> clazz) {
+        Connection connection = ConnectionHelper.getConnection();
+        String sql = "select id from " + getNameTable(clazz) + " where " + param + " =" + "'" + name + "'" + " limit 1";
+
+
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            if (resultSet != null) {
+                return (long) resultSet.getObject(1);
+            } else {
+                throw new UnsupportedOperationException();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     private <T extends DataSet> T readFromDB(String sql, Class<T> clazz) throws SQLException {

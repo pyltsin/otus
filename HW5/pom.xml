@@ -30,7 +30,7 @@
                     </descriptorRefs>
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
-                        <index>true</index>
+                        <ind>true</ind>
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>ru.otus.pyltsin.HW5.RunnerExample</mainClass>
