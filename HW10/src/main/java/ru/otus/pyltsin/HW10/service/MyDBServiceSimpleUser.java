@@ -55,6 +55,5 @@ public class MyDBServiceSimpleUser implements DBService {
 
     @Override
     public void shutdown() {
-
     }
 }

@@ -1,7 +1,6 @@
 package ru.otus.pyltsin.HW10.service;
 
 import ru.otus.pyltsin.HW10.common.DataSet;
-import ru.otus.pyltsin.HW10.common.UserDataSet;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public interface DBService {
 
     DataSet readByName(String name);
 
-    List<? extends UserDataSet> readAll();
+    List<? extends DataSet> readAll();
 
     String getLocalStatus();
 
