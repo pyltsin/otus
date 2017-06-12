@@ -16,7 +16,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 
 /**
- * Created by Pyltsin on 04.06.2017. Algo8
+ * Created by Pyltsin on 04.06.2017.
  */
 @SuppressWarnings("Duplicates")
 public class MyExecutorUser implements ExecutorUser {
@@ -148,12 +148,13 @@ public class MyExecutorUser implements ExecutorUser {
 
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
-            resultSet.next();
-            if (resultSet != null) {
-                return (long) resultSet.getObject(1);
-            } else {
+            boolean flagNotNull = resultSet.next();
+            if (!flagNotNull) {
                 throw new UnsupportedOperationException();
             }
+
+            return (long) resultSet.getObject(1);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

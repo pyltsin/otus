@@ -6,10 +6,10 @@ import ru.otus.pyltsin.HW10.common.UserDataSet;
 import java.util.List;
 
 /**
- * Created by Pyltsin on 11.06.2017. Algo8
+ * Created by Pyltsin on 11.06.2017.
  */
 public interface DBService {
-    void save(DataSet dataSet);
+    DataSet save(DataSet dataSet);
 
     DataSet read(long id);
 

@@ -2,7 +2,6 @@ package ru.otus.pyltsin.HW10.common;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -12,9 +11,23 @@ import javax.persistence.Table;
 @Table(name = "USERS")
 public class SimpleUser extends DataSet {
 
-    @Id
-    @Column(name = "id")
-    private long id;
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
+    public int getAgeUser() {
+        return ageUser;
+    }
+
+    public void setAgeUser(int ageUser) {
+        this.ageUser = ageUser;
+    }
+
     @Column(name = "name")
     private String nameUser;
     @Column(name = "age")

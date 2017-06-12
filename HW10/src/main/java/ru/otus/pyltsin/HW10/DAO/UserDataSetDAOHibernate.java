@@ -10,21 +10,18 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
- * Created by Pyltsin on 11.06.2017.
- */
-
-/**
  * Нагло украдено из лекции
  */
 public class UserDataSetDAOHibernate {
-    private Session session;
+    private final Session session;
 
     public UserDataSetDAOHibernate(Session session) {
         this.session = session;
     }
 
-    public void save(UserDataSet dataSet) {
+    public UserDataSet save(UserDataSet dataSet) {
         session.save(dataSet);
+        return dataSet;
     }
 
     public UserDataSet read(long id) {

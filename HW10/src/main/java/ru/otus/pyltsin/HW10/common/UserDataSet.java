@@ -11,7 +11,6 @@ import java.util.Set;
 @Table(name = "USERS2")
 public class UserDataSet extends DataSet{
 
-
     @Column(name = "name")
     private String nameUser;
 
@@ -34,6 +33,11 @@ public class UserDataSet extends DataSet{
     private AddressDataSet addressDataSet;
 
     @OneToMany(cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    @JoinTable(
+            name = "users_phone",
+            joinColumns = @JoinColumn(name = "ID_USERS"),
+            inverseJoinColumns = @JoinColumn(name = "ID_PHONES")
+    )
     private Set<PhoneDataSet> phones = new HashSet<>();
 
 
@@ -96,6 +100,4 @@ public class UserDataSet extends DataSet{
     public void setAge(int age) {
         this.ageUser = age;
     }
-
-
 }

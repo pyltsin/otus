@@ -7,9 +7,10 @@ import javax.persistence.*;
  * Created by tully.
  */
 @MappedSuperclass
+
 public class DataSet {
     @Id
-    @Column
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

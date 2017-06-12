@@ -1,9 +1,5 @@
 package ru.otus.pyltsin.HW10.service;
 
-/**
- * Created by Pyltsin on 11.06.2017.
- */
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -42,11 +38,11 @@ public class DBServiceHibUserDataSet implements DBService {
         return configuration.buildSessionFactory();
     }
 
-    public void save(DataSet dataSet) {
-        try (Session session = sessionFactory.openSession()) {
+    public DataSet save(DataSet dataSet) {
+        return runInSession(session -> {
             UserDataSetDAOHibernate dao = new UserDataSetDAOHibernate(session);
-            dao.save((UserDataSet) dataSet);
-        }
+            return dao.save((UserDataSet) dataSet);
+        });
     }
 
 
@@ -73,9 +69,7 @@ public class DBServiceHibUserDataSet implements DBService {
 
     @Override
     public String getLocalStatus() {
-        return runInSession(session -> {
-            return session.getTransaction().getStatus().name();
-        });
+        return runInSession(session -> session.getTransaction().getStatus().name());
     }
 
     public void shutdown() {

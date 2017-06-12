@@ -9,10 +9,10 @@ import ru.otus.pyltsin.HW10.common.UserDataSet;
 import java.util.List;
 
 /**
- * Created by Pyltsin on 11.06.2017. Algo8
+ * Created by Pyltsin on 11.06.2017.
  */
 public class MyDBServiceSimpleUser implements DBService {
-    private MyExecutorUser myExecutorUser;
+    private final MyExecutorUser myExecutorUser;
 
     public MyDBServiceSimpleUser(MyExecutorUser myExecutorUser) {
         this.myExecutorUser = myExecutorUser;
@@ -23,13 +23,14 @@ public class MyDBServiceSimpleUser implements DBService {
     }
 
     @Override
-    public void save(DataSet dataSet) {
+    public DataSet save(DataSet dataSet) {
         if (dataSet instanceof SimpleUser) {
             SimpleUser simpleUser = (SimpleUser) dataSet;
             myExecutorUser.save(simpleUser);
         } else {
             throw new UnsupportedOperationException();
         }
+        return dataSet;
     }
 
     @Override

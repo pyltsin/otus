@@ -5,11 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Created by Pyltsin on 11.06.2017. Algo8
+ * Created by Pyltsin on 11.06.2017.
  */
 @Entity
 @Table(name = "ADDRESSES")
-public class AddressDataSet extends DataSet{
+public class AddressDataSet extends DataSet {
+
     @Column(name = "STREET")
     private String street;
     @Column(name = "IND")

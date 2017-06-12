@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * Created by Pyltsin on 04.06.2017. Algo8
+ * Created by Pyltsin on 04.06.2017.
  */
 @SuppressWarnings("Duplicates")
 public class ConnectionHelper {
@@ -38,8 +38,8 @@ public class ConnectionHelper {
     public static String test() {
         StringBuilder stringBuilder = new StringBuilder();
         try (Connection connection = getConnection()) {
-            stringBuilder.append("Connected to: " + connection.getMetaData().getURL());
-            stringBuilder.append("DB name: " + connection.getMetaData().getDatabaseProductName());
+            stringBuilder.append("Connected to: ").append(connection.getMetaData().getURL());
+            stringBuilder.append("DB name: ").append(connection.getMetaData().getDatabaseProductName());
         } catch (SQLException e) {
             e.printStackTrace();
         }
