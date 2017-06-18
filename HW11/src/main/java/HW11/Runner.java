@@ -52,6 +52,6 @@ public class Runner {
 
     private static void printCacheParam(CacheEngine<Long, UserDataSet> cacheEngine) {
         System.out.println("Cache hit: " + cacheEngine.getHitCount());
-        System.out.println("Cache miss: " + cacheEngine.getHitCount());
+        System.out.println("Cache miss: " + cacheEngine.getMissCount());
     }
 }

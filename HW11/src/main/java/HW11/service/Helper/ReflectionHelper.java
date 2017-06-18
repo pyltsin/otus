@@ -6,6 +6,7 @@ import java.util.Set;
 /**
  * Created by Pyltsin on 27.05.2017.
  */
+@SuppressWarnings("ALL")
 public class ReflectionHelper {
     private static final Set<Class<?>> WRAPPER_TYPES_STRING = getWrapperTypesString();
     private static final Set<Class<?>> WRAPPER_TYPES_BOOLEAN = getWrapperTypesBoolean();

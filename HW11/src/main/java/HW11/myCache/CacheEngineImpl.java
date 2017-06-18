@@ -30,9 +30,6 @@ public class CacheEngineImpl<K, V> implements CacheEngine<K, V> {
     }
 
     public void put(CacheElement<K, V> element) {
-        if (elements.containsKey(element.getKey())) {
-            return;
-        }
 
         if (elements.size() == maxElements) {
             K firstKey = elements.keySet().iterator().next();

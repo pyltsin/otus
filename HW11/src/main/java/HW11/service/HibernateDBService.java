@@ -53,33 +53,32 @@ public class HibernateDBService implements DBService {
         if (!(dataSet instanceof UserDataSet)) {
             throw new IllegalArgumentException();
         }
-        return runInSession(session -> {
+        UserDataSet out =  runInSession(session -> {
             HibernateDAO dao = new HibernateDAO(session);
-            UserDataSet out = dao.save((UserDataSet) dataSet);
-            cacheEngine.put(new CacheElement<>(out.getId(), out));
-            return out;
+            return dao.save((UserDataSet) dataSet);
         });
+        cacheEngine.put(new CacheElement<>(out.getId(), out));
+        return out;
     }
 
     public UserDataSet read(long id) {
-        CacheElement out = cacheEngine.get(id);
-        if (out != null) {
-            return (UserDataSet) out.getValue();
+        CacheElement el = cacheEngine.get(id);
+        if (el != null) {
+            return (UserDataSet) el.getValue();
         }
 
-        return runInSession(session -> {
+        UserDataSet out = runInSession(session -> {
             HibernateDAO dao = new HibernateDAO(session);
             return dao.read(id);
         });
+        cacheEngine.put(new CacheElement<>(out.getId(), out));
+        return out;
     }
 
     public UserDataSet readByName(String name) {
         return runInSession(session -> {
             HibernateDAO dao = new HibernateDAO(session);
-            UserDataSet out = dao.readByName(name);
-            cacheEngine.put(new CacheElement<>(out.getId(), out));
-
-            return out;
+            return dao.readByName(name);
         });
     }
 

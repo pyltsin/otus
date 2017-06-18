@@ -1,5 +1,7 @@
 package HW11.common;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +11,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "USERS2")
+@Proxy(lazy=false)
 public class UserDataSet extends DataSet{
 
     @Column(name = "name")
