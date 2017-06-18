@@ -1,5 +1,6 @@
 package HW11.myCache;
 
+import java.lang.ref.SoftReference;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -12,21 +13,20 @@ import java.util.TimerTask;
 
 public class CacheEngineImpl<K, V> implements CacheEngine<K, V> {
     private static final int TIME_THRESHOLD_MS = 5;
+    private static final int TIME_DELETE = 10_000;
 
     private final int maxElements;
     private final long idleTimeMs;
-    private final boolean isEternal;
 
-    private final Map<K, CacheElement<K, V>> elements = new LinkedHashMap<>();
+    private final Map<K, SoftReference<CacheElement<K, V>>> elements = new LinkedHashMap<>();
     private final Timer timer = new Timer();
 
     private int hit = 0;
     private int miss = 0;
 
-    public CacheEngineImpl(int maxElements, long idleTimeMs, boolean isEternal) {
+    public CacheEngineImpl(int maxElements, long idleTimeMs) {
         this.maxElements = maxElements;
-        this.idleTimeMs = idleTimeMs > 0 ? idleTimeMs : 0;
-        this.isEternal = idleTimeMs == 0 || isEternal;
+        this.idleTimeMs = idleTimeMs > 0 ? idleTimeMs : TIME_DELETE;
     }
 
     public void put(CacheElement<K, V> element) {
@@ -37,18 +37,22 @@ public class CacheEngineImpl<K, V> implements CacheEngine<K, V> {
         }
 
         K key = element.getKey();
-        elements.put(key, element);
+        elements.put(key, new SoftReference<>(element));
 
-        if (!isEternal) {
-            if (idleTimeMs != 0) {
-                TimerTask idleTimerTask = getTimerTask(key);
-                timer.schedule(idleTimerTask, idleTimeMs);
-            }
+
+        if (idleTimeMs != 0) {
+            TimerTask idleTimerTask = getTimerTask(key);
+            timer.schedule(idleTimerTask, idleTimeMs);
         }
+
     }
 
     public CacheElement<K, V> get(K key) {
-        CacheElement<K, V> element = elements.get(key);
+        if (elements.get(key) == null) {
+            miss++;
+            return null;
+        }
+        CacheElement<K, V> element = elements.get(key).get();
         if (element != null) {
             hit++;
             element.setAccessed();
@@ -75,7 +79,11 @@ public class CacheEngineImpl<K, V> implements CacheEngine<K, V> {
         return new TimerTask() {
             @Override
             public void run() {
-                CacheElement<K, V> checkedElement = elements.get(key);
+                if (elements.get(key) == null) {
+                    return;
+                }
+
+                CacheElement<K, V> checkedElement = elements.get(key).get();
                 if (checkedElement == null ||
                         isT1BeforeT2(checkedElement.getLastAccessTime() + idleTimeMs, System.currentTimeMillis())) {
                     elements.remove(key);

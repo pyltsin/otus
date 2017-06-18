@@ -24,7 +24,7 @@ public class Runner {
         System.out.println("Check my Cache");
         //check Cache
 
-        CacheEngine<Long, UserDataSet> cacheEngine = new CacheEngineImpl<>(2, 1_000, false);
+        CacheEngine<Long, UserDataSet> cacheEngine = new CacheEngineImpl<>(2, 1_000);
         DBService dbService = new HibernateDBService(cacheEngine);
 
         String status = dbService.getLocalStatus();

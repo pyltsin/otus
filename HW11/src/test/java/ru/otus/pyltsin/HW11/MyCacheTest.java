@@ -31,7 +31,7 @@ public class MyCacheTest {
     @Before
     public void setUp() throws Exception {
         //set cache
-        cacheEngine = new CacheEngineImpl<>(2, 1_000, false);
+        cacheEngine = new CacheEngineImpl<>(2, 1_000);
         dbService = new HibernateDBService(cacheEngine);
     }
 

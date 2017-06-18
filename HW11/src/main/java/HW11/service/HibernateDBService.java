@@ -37,7 +37,7 @@ public class HibernateDBService implements DBService {
         Properties properties = ConnectionHelper.getProperties("hibernate.properties");
         configuration.setProperties(properties);
         sessionFactory = createSessionFactory(configuration);
-        this.cacheEngine = new CacheEngineImpl<>(10, 30_000, false);
+        this.cacheEngine = new CacheEngineImpl<>(10, 30_000);
     }
 
     public HibernateDBService(CacheEngine<Long, UserDataSet> cacheEngine) throws IOException {
