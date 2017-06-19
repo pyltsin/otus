@@ -80,7 +80,7 @@ public class CacheEngineImpl<K, V> implements CacheEngine<K, V> {
             @Override
             public void run() {
                 if (elements.get(key) == null) {
-                    return;
+                    elements.remove(key);
                 }
 
                 CacheElement<K, V> checkedElement = elements.get(key).get();
