@@ -33,7 +33,6 @@ public class Runner {
 
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setResourceBase(PUBLIC_HTML);
-//        resourceHandler.setWelcomeFiles(new String[]{ "index.html" });
 
         ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         servletContextHandler.addServlet(
