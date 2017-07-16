@@ -10,7 +10,7 @@ import static ru.otus.pyltsin.HW14.SortArrayUtils.HelpQuickSort.quickSortPart;
  * Created by Pyltsin on 14.10.2016.
  */
 public class QuickSortForkJoin extends RecursiveAction implements Sort {
-    private static final int THREASFOLD = 1000_000;
+    private static final int THREASHOLD = 1_000;
     private Comparable[] array;
     private int start;
     private int end;
@@ -42,7 +42,7 @@ public class QuickSortForkJoin extends RecursiveAction implements Sort {
         }
         int middle = partitionQuickSort(array, start, end);
 
-        if (end - start < THREASFOLD) {
+        if (end - start < THREASHOLD) {
             quickSortPart(array, start, middle - 1);
             quickSortPart(array, middle + 1, end);
         } else {
