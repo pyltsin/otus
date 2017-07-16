@@ -45,14 +45,9 @@ public class HelpQuickSort extends Thread {
      */
     @SuppressWarnings("Duplicates")
     public static int partitionQuickSort(Comparable[] array, int start, int end) {
-//        System.out.println(iter);
-//        iter++;
-        //int iterIn = 0;
         int i = start + 1;
         int j = end;
         while (true) {
-            //System.out.println(iter + "      " + iterIn + "   " + start + "  " + end + "  " + i + ", " + j + " " + array[i] + " " + array[j]);
-            //iterIn++;
             while (i <= end && isLessOrEquals(array[i], array[start])) {
                 i++;
             }
@@ -90,7 +85,6 @@ public class HelpQuickSort extends Thread {
     }
 
     public void run() {
-//        System.out.println("start thread");
         if (startI >= endI) {
             return;
         }
