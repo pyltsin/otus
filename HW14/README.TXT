@@ -5,7 +5,7 @@ SortWithParallel - Arrays.parallelSort(array);
 SortWithParallel - parallelStream().sorted();
 
 В Runnere ради интереса замерено время выполнения для каждого сортировщика. Замер времени сделан на скорую руку (просьба не сильно ругаться)
-С большим преимуществом выигрывает parallelStream().sorted(). Самописные -  медленные.
+Выигрывает когда кто, но обычно stream. QuickSortMultiThread -  медленный.
 QuickSortForkJoin можно разогнать, если правильно настроить параметры.
 
 Чтобы убедиться, что все вправду сортируется - созданы тесты.
