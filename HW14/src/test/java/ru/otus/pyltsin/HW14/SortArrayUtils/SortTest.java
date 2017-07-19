@@ -8,8 +8,8 @@ import static org.junit.Assert.assertTrue;
  * Created by Pyltsin on 17.07.2017.
  */
 public class SortTest {
-    private static final int MAX_TEST = 10;
-    private static final int MAX_NUMBER = 1000;
+    private static final int MAX_TEST = 100;
+    private static final int MAX_NUMBER = 10000;
 
     @Test
     public void SortStreamTest() throws Exception {

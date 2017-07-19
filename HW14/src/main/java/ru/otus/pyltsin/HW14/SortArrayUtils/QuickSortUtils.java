@@ -1,24 +1,9 @@
 package ru.otus.pyltsin.HW14.SortArrayUtils;
 
 /**
- * Created by Pyltsin on 02.10.2016.
+ * Created by Pyltsin on 19.07.2017.
  */
-public class HelpQuickSort extends Thread {
-    //    private static int iter = 0;
-    private static int maxThread;
-
-    private volatile Comparable[] array;
-    private int startI;
-    private int endI;
-
-    HelpQuickSort(Comparable[] array, int startI, int endI) {
-        this.array = array;
-        this.startI = startI;
-        this.endI = endI;
-        maxThread = Runtime.getRuntime().availableProcessors();
-    }
-
-
+public class QuickSortUtils {
     /**
      * Helped method. Sort only part in [start, end]
      *
@@ -84,27 +69,4 @@ public class HelpQuickSort extends Thread {
         array[j] = temp;
     }
 
-    public void run() {
-        if (startI >= endI) {
-            return;
-        }
-        int middle = partitionQuickSort(array, startI, endI);
-        if (maxThread > 2) {
-            maxThread -= 2;
-            Thread quickThread1 = new HelpQuickSort(array, startI, middle - 1);
-            Thread quickThread2 = new HelpQuickSort(array, middle + 1, endI);
-
-            quickThread1.start();
-            quickThread2.start();
-            try {
-                quickThread1.join();
-                quickThread2.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } else {
-            quickSortPart(array, startI, middle - 1);
-            quickSortPart(array, middle + 1, endI);
-        }
-    }
 }

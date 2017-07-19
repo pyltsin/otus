@@ -3,8 +3,8 @@ package ru.otus.pyltsin.HW14.SortArrayUtils;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-import static ru.otus.pyltsin.HW14.SortArrayUtils.HelpQuickSort.partitionQuickSort;
-import static ru.otus.pyltsin.HW14.SortArrayUtils.HelpQuickSort.quickSortPart;
+import static ru.otus.pyltsin.HW14.SortArrayUtils.QuickSortUtils.partitionQuickSort;
+import static ru.otus.pyltsin.HW14.SortArrayUtils.QuickSortUtils.quickSortPart;
 
 /**
  * Created by Pyltsin on 14.10.2016.

@@ -6,7 +6,7 @@ package ru.otus.pyltsin.HW14.SortArrayUtils;
 public class QuickSortMultiThread implements Sort {
 
     public void sort(Comparable[] array) {
-        Thread quickThread = new HelpQuickSort(array, 0, array.length - 1);
+        Thread quickThread = new QuickSortThread(array, 0, array.length - 1);
         quickThread.start();
         try {
             quickThread.join();
