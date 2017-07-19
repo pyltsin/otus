@@ -3,7 +3,7 @@ package ru.otus.pyltsin.HW14.SortArrayUtils;
 /**
  * Created by Pyltsin on 19.07.2017.
  */
-public class QuickSortUtils {
+class QuickSortUtils {
     /**
      * Helped method. Sort only part in [start, end]
      *
@@ -11,7 +11,7 @@ public class QuickSortUtils {
      * @param start
      * @param end
      */
-    public static void quickSortPart(Comparable[] array, int start, int end) {
+    static void quickSortPart(Comparable[] array, int start, int end) {
         if (start >= end) {
             return;
         }
@@ -29,7 +29,7 @@ public class QuickSortUtils {
      * @return index for middle
      */
     @SuppressWarnings("Duplicates")
-    public static int partitionQuickSort(Comparable[] array, int start, int end) {
+    static int partitionQuickSort(Comparable[] array, int start, int end) {
         int i = start + 1;
         int j = end;
         while (true) {
@@ -59,12 +59,12 @@ public class QuickSortUtils {
         return (end - start) / 2 + start;
     }
 
-    private static boolean isLessOrEquals(Comparable a, Comparable b) {
+    private static boolean isLessOrEquals(Comparable a, Comparable<? extends Object> b) {
         return a.compareTo(b) < 0 || a.equals(b);
     }
 
     private static void swap(Comparable[] array, int i, int j) {
-        Comparable temp = array[i];
+        Comparable<? extends Object> temp = array[i];
         array[i] = array[j];
         array[j] = temp;
     }
