@@ -1,4 +1,4 @@
-package ru.otus.pyltsin.HW15.DAO;
+package ru.otus.pyltsin.HW15.dao;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -13,10 +13,11 @@ import java.util.List;
  * Нагло украдено из лекции
  */
 @SuppressWarnings("ALL")
-public class HibernateDAO {
+public class DAOImpl {
+
     private final Session session;
 
-    public HibernateDAO(Session session) {
+    public DAOImpl(Session session) {
         this.session = session;
     }
 
@@ -28,6 +29,7 @@ public class HibernateDAO {
     public UserDataSet read(long id) {
         return session.load(UserDataSet.class, id);
     }
+
 
     public UserDataSet readByName(String name) {
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -44,4 +46,5 @@ public class HibernateDAO {
         criteria.from(UserDataSet.class);
         return session.createQuery(criteria).list();
     }
+
 }
