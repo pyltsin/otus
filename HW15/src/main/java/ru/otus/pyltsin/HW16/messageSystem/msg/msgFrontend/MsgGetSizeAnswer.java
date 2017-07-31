@@ -1,4 +1,4 @@
-package ru.otus.pyltsin.HW16.app.msg.msgFrontend;
+package ru.otus.pyltsin.HW16.messageSystem.msg.msgFrontend;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

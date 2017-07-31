@@ -1,7 +1,7 @@
-package ru.otus.pyltsin.HW16.app.msg.msgDB;
+package ru.otus.pyltsin.HW16.messageSystem.msg.msgDB;
 
 import ru.otus.pyltsin.HW16.app.DBService;
-import ru.otus.pyltsin.HW16.app.msg.msgFrontend.MsgGetUserAnswer;
+import ru.otus.pyltsin.HW16.messageSystem.msg.msgFrontend.MsgGetUserAnswer;
 import ru.otus.pyltsin.HW16.common.UserDataSet;
 import ru.otus.pyltsin.HW16.messageSystem.Address;
 import ru.otus.pyltsin.HW16.messageSystem.MessageSystem;

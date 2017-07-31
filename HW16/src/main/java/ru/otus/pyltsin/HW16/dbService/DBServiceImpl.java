@@ -4,14 +4,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import ru.otus.pyltsin.HW16.app.Addressee;
 import ru.otus.pyltsin.HW16.app.DBService;
-import ru.otus.pyltsin.HW16.app.MessageSystemContext;
 import ru.otus.pyltsin.HW16.common.DataSet;
 import ru.otus.pyltsin.HW16.common.UserDataSet;
 import ru.otus.pyltsin.HW16.dao.DAOImpl;
 import ru.otus.pyltsin.HW16.helper.PropertiesHelper;
 import ru.otus.pyltsin.HW16.messageSystem.Address;
-import ru.otus.pyltsin.HW16.messageSystem.Addressee;
+import ru.otus.pyltsin.HW16.messageSystem.MessageSystemContext;
 
 import java.io.IOException;
 import java.util.List;
@@ -44,7 +44,7 @@ public class DBServiceImpl implements DBService, Addressee {
     }
 
     public void init() {
-        context.getMessageSystem().addAddressee(this);
+        context.getLocalMessageSystem().addAddressee(this);
     }
 
     @Override

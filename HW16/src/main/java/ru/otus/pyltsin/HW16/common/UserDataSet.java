@@ -11,11 +11,22 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "USERS2")
-@Proxy(lazy=false)
-public class UserDataSet extends DataSet{
+@Proxy(lazy = false)
+public class UserDataSet extends DataSet {
 
     @Column(name = "name")
     private String nameUser;
+    @Column(name = "age")
+    private int ageUser;
+
+    public UserDataSet(String nameUser, int ageUser) {
+        this.nameUser = nameUser;
+        this.ageUser = ageUser;
+    }
+
+
+    public UserDataSet() {
+    }
 
     @Override
     public String toString() {
@@ -24,10 +35,6 @@ public class UserDataSet extends DataSet{
                 ", ageUser=" + ageUser +
                 '}';
     }
-
-    @Column(name = "age")
-    private int ageUser;
-
 
     public String getNameUser() {
         return nameUser;
@@ -45,24 +52,16 @@ public class UserDataSet extends DataSet{
         this.ageUser = ageUser;
     }
 
-    public UserDataSet(String nameUser, int ageUser) {
-        this.nameUser = nameUser;
-        this.ageUser = ageUser; }
-
-    public UserDataSet() {
-    }
-
-
     public String getName() {
         return nameUser;
     }
 
-    public int getAge() {
-        return ageUser;
-    }
-
     public void setName(String name) {
         this.nameUser = name;
+    }
+
+    public int getAge() {
+        return ageUser;
     }
 
     public void setAge(int age) {

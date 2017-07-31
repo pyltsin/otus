@@ -1,20 +1,16 @@
 package ru.otus.pyltsin.HW16.messageSystem;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * @author tully
+ * update pyltsin
  */
 public final class Address {
-    private static final AtomicInteger ID_GENERATOR = new AtomicInteger();
     private final String id;
+    private final TypeAddress typeAddress;
 
-    public Address(){
-        id = String.valueOf(ID_GENERATOR.getAndIncrement());
-    }
-
-    public Address(String id) {
+    public Address(String id, TypeAddress typeAddress) {
         this.id = id;
+        this.typeAddress = typeAddress;
     }
 
     @Override

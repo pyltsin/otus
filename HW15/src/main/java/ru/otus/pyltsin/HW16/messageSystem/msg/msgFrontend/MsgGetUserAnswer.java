@@ -1,4 +1,4 @@
-package ru.otus.pyltsin.HW16.app.msg.msgFrontend;
+package ru.otus.pyltsin.HW16.messageSystem.msg.msgFrontend;
 
 import ru.otus.pyltsin.HW16.app.FrontendService;
 import ru.otus.pyltsin.HW16.common.UserDataSet;
