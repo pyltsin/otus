@@ -1,14 +1,16 @@
 package ru.otus.pyltsin.HW16.runner;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.otus.pyltsin.HW16.app.ProcessRunner;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Created by tully.
@@ -34,7 +36,9 @@ public class ProcessRunnerImpl implements ProcessRunner {
         ProcessBuilder pb = new ProcessBuilder(command.split(" "));
         pb.redirectErrorStream(true);
         Process p = pb.start();
-
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current relative path is: " + s);
         StreamListener errors = new StreamListener(p.getErrorStream(), "ERROR");
         StreamListener output = new StreamListener(p.getInputStream(), "OUTPUT");
 
@@ -44,7 +48,7 @@ public class ProcessRunnerImpl implements ProcessRunner {
     }
 
     private class StreamListener extends Thread {
-        private final Logger logger = Logger.getLogger(StreamListener.class.getName());
+        private final Logger logger = LoggerFactory.getLogger(StreamListener.class.getName());
 
         private final InputStream is;
         private final String type;
@@ -61,9 +65,12 @@ public class ProcessRunnerImpl implements ProcessRunner {
                 String line;
                 while ((line = br.readLine()) != null) {
                     out.append(type).append('>').append(line).append('\n');
+                    System.out.println(line);
                 }
-            } catch (IOException e) {
-                logger.log(Level.SEVERE, e.getMessage());
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+                logger.debug(e.getMessage());
             }
         }
     }

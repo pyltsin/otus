@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class SocketClientChannel implements MsgChannel {
     private static final Logger logger = Logger.getLogger(SocketClientChannel.class.getName());
-    private static final int WORKERS_COUNT = 3;
+    private static final int WORKERS_COUNT = 2;
 
     private final BlockingQueue<Msg> output = new LinkedBlockingQueue<>();
     private final BlockingQueue<Msg> input = new LinkedBlockingQueue<>();

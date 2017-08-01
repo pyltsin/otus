@@ -8,7 +8,7 @@ public class MessageSystemContext {
 
     private final LocalMessageSystem localMessageSystem;
 
-    private Address serviceAddress;
+    private Address serviceAddress = new Address("", TypeAddress.DB);
 
     public MessageSystemContext(LocalMessageSystem localMessageSystem) {
         this.localMessageSystem = localMessageSystem;

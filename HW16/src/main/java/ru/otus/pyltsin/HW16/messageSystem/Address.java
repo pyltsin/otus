@@ -20,15 +20,19 @@ public final class Address {
 
         Address address = (Address) o;
 
-        return id != null ? id.equals(address.id) : address.id == null;
+        return id.equals(address.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 
     public String getId() {
         return id;
     }
 
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+    public TypeAddress getTypeAddress() {
+        return typeAddress;
     }
 }

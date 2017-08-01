@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.otus.pyltsin.HW16.app.Addressee;
 import ru.otus.pyltsin.HW16.app.MsgChannel;
-import ru.otus.pyltsin.HW16.app.ServerMBean;
 import ru.otus.pyltsin.HW16.messageSystem.msg.msgServer.MsgHello;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * @author tully
  * update pyltsin
  */
-public final class LocalMessageSystem implements ServerMBean {
+public final class LocalMessageSystem implements LocalMessageSystemMBean {
     private static final int DEFAULT_STEP_TIME = 10;
     private static Logger log = LoggerFactory.getLogger(LocalMessageSystem.class);
     private final Map<Address, ConcurrentLinkedQueue<Msg>> messagesMap = new HashMap<>();
@@ -35,6 +34,7 @@ public final class LocalMessageSystem implements ServerMBean {
         addresseeMap.put(addressee.getAddress(), addressee);
         messagesMap.put(addressee.getAddress(), new ConcurrentLinkedQueue<>());
         sendMessage(new MsgHello(addressee.getAddress()));
+        log.debug("send hello");
     }
 
     public void sendMessage(Msg msg) {
