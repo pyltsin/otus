@@ -54,7 +54,7 @@ public class ServerMain {
         try {
             new ProcessRunnerImpl().start(txt);
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
 
     }
