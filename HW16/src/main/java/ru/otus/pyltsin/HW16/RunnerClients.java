@@ -13,7 +13,6 @@ import ru.otus.pyltsin.HW16.front.FrontendServiceImpl;
 import ru.otus.pyltsin.HW16.messageSystem.Address;
 import ru.otus.pyltsin.HW16.messageSystem.LocalMessageSystem;
 import ru.otus.pyltsin.HW16.messageSystem.MessageSystemContext;
-import ru.otus.pyltsin.HW16.messageSystem.TypeAddress;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
@@ -65,10 +64,10 @@ public class RunnerClients {
         FrontendServiceImpl fs = null;
         switch (args[0]) {
             case NAME_DB:
-                service = new DBServiceImpl(context, new Address(address, TypeAddress.DB));
+                service = new DBServiceImpl(context, new Address(address));
                 break;
             case NAME_FRONTEND:
-                fs = new FrontendServiceImpl(context, new Address(address, TypeAddress.Frontend));
+                fs = new FrontendServiceImpl(context, new Address(address));
                 service = fs;
                 try {
                     portForWeb = Integer.parseInt(args[4]);

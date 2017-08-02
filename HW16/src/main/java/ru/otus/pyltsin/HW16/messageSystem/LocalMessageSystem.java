@@ -33,7 +33,7 @@ public final class LocalMessageSystem implements LocalMessageSystemMBean {
     public void addAddressee(Addressee addressee) {
         addresseeMap.put(addressee.getAddress(), addressee);
         messagesMap.put(addressee.getAddress(), new ConcurrentLinkedQueue<>());
-        sendMessage(new MsgHello(addressee.getAddress()));
+        sendMessage(new MsgHello(addressee.getAddress(), addressee.getTypeAddress()));
         log.debug("send hello");
     }
 

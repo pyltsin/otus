@@ -30,4 +30,6 @@ public abstract class Msg {
     }
 
     public abstract void exec(LocalMessageSystem localMessageSystem, Addressee addressee);
+
+    public abstract TypeAddress getTypeReciever();
 }

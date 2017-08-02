@@ -8,6 +8,7 @@ import ru.otus.pyltsin.HW16.common.UserDataSet;
 import ru.otus.pyltsin.HW16.messageSystem.Address;
 import ru.otus.pyltsin.HW16.messageSystem.MessageSystemContext;
 import ru.otus.pyltsin.HW16.messageSystem.Msg;
+import ru.otus.pyltsin.HW16.messageSystem.TypeAddress;
 import ru.otus.pyltsin.HW16.messageSystem.msg.msgDB.MsgGetListId;
 import ru.otus.pyltsin.HW16.messageSystem.msg.msgDB.MsgGetUser;
 
@@ -74,5 +75,10 @@ public class FrontendServiceImpl implements FrontendService, Addressee {
     @Override
     public Address getAddress() {
         return address;
+    }
+
+    @Override
+    public TypeAddress getTypeAddress() {
+        return TypeAddress.FRONTEND;
     }
 }

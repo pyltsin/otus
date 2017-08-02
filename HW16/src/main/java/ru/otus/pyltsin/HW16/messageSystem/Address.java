@@ -6,14 +6,18 @@ package ru.otus.pyltsin.HW16.messageSystem;
  */
 public final class Address {
     private final String id;
-    private final TypeAddress typeAddress;
 
-    public Address(String id, TypeAddress typeAddress) {
+    public Address(String id) {
         this.id = id;
-        this.typeAddress = typeAddress;
+        if (TypeAddress.contains(id)) {
+            throw new IllegalArgumentException(id);
+        }
+    }
+    public Address(TypeAddress typeAddress) {
+        this.id = typeAddress.name();
     }
 
-    @Override
+        @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -30,9 +34,5 @@ public final class Address {
 
     public String getId() {
         return id;
-    }
-
-    public TypeAddress getTypeAddress() {
-        return typeAddress;
     }
 }
