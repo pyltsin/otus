@@ -1,6 +1,7 @@
 package ru.otus.pyltsin.HW16.server;
 
 
+import org.eclipse.jetty.util.BlockingArrayQueue;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -38,8 +40,8 @@ public class MessageServerImpl implements MessageServerImplMBean, Addressee, Mes
 
     public MessageServerImpl(Address address) {
         executor = Executors.newFixedThreadPool(THREADS_NUMBER);
-        channels = new ArrayList<>();
-        channelsWithAdress = new HashMap<>();
+        channels = new BlockingArrayQueue<>();
+        channelsWithAdress = new ConcurrentHashMap<>();
         this.address = address;
     }
 
