@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Pyltsin on 24.07.2017.
  */
-public class MsgGetListId extends MsgToBDService {
+public class MsgGetListId extends MsgToDBService {
 
     private static Logger LOG = LoggerFactory.getLogger(MsgGetListId.class);
     private final int idServlet;
@@ -24,7 +24,6 @@ public class MsgGetListId extends MsgToBDService {
         LOG.debug("MsgGetSize");
 
     }
-
 
     @Override
     public void exec(LocalMessageSystem localMessageSystem, DBService dbService) {

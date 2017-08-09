@@ -5,14 +5,13 @@ import ru.otus.pyltsin.HW16.app.DBService;
 import ru.otus.pyltsin.HW16.messageSystem.Address;
 import ru.otus.pyltsin.HW16.messageSystem.LocalMessageSystem;
 import ru.otus.pyltsin.HW16.messageSystem.Msg;
-import ru.otus.pyltsin.HW16.messageSystem.TypeAddress;
 
 /**
  * Created by Pyltsin on 24.07.2017.
  */
-public abstract class MsgToBDService extends Msg {
+public abstract class MsgToDBService extends Msg {
 
-    public MsgToBDService(Address from, Address to, Class<?> clazz) {
+    MsgToDBService(Address from, Address to, Class<?> clazz) {
         super(from, to, clazz);
     }
 
@@ -21,11 +20,6 @@ public abstract class MsgToBDService extends Msg {
         if (addressee instanceof DBService) {
             exec(localMessageSystem, (DBService) addressee);
         }
-    }
-
-    @Override
-    public TypeAddress getTypeReciever() {
-        return TypeAddress.DB;
     }
 
     abstract void exec(LocalMessageSystem localMessageSystem, DBService addressee);

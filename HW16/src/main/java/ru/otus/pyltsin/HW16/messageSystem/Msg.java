@@ -9,6 +9,7 @@ public abstract class Msg {
     public static final String CLASS_NAME_VARIABLE = "className";
     private final Address from;
     private Address to;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final String className;
 
     public void setTo(Address to) {
@@ -30,6 +31,4 @@ public abstract class Msg {
     }
 
     public abstract void exec(LocalMessageSystem localMessageSystem, Addressee addressee);
-
-    public abstract TypeAddress getTypeReciever();
 }

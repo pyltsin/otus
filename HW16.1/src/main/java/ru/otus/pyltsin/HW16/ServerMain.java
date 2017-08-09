@@ -4,6 +4,7 @@ package ru.otus.pyltsin.HW16;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.otus.pyltsin.HW16.messageSystem.Address;
+import ru.otus.pyltsin.HW16.messageSystem.TypeAddress;
 import ru.otus.pyltsin.HW16.runner.ProcessRunnerImpl;
 import ru.otus.pyltsin.HW16.server.MessageServerImpl;
 
@@ -42,7 +43,7 @@ public class ServerMain {
 
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
         ObjectName name = new ObjectName("ru.otus:type=Server");
-        MessageServerImpl server = new MessageServerImpl(new Address("messageServer"));
+        MessageServerImpl server = new MessageServerImpl(new Address("messageServer", TypeAddress.MESSAGE_SERVER));
         mbs.registerMBean(server, name);
 
         server.init();

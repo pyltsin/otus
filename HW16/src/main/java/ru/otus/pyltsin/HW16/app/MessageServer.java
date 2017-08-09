@@ -7,5 +7,5 @@ import ru.otus.pyltsin.HW16.messageSystem.TypeAddress;
  * Created by Pyltsin on 02.08.2017.
  */
 public interface MessageServer {
-    void registerChannel(MsgChannel channel, Address from, TypeAddress typeAddress);
+    void registerChannel(MsgChannel channel, Address from);
 }

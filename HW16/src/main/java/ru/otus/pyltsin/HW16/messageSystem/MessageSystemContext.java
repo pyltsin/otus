@@ -7,7 +7,7 @@ package ru.otus.pyltsin.HW16.messageSystem;
 public class MessageSystemContext {
 
     private final LocalMessageSystem localMessageSystem;
-    private Address serviceAddress = new Address(TypeAddress.DB);
+    private Address serviceAddress = new Address(null, TypeAddress.DB);
 
     public MessageSystemContext(LocalMessageSystem localMessageSystem) {
         this.localMessageSystem = localMessageSystem;

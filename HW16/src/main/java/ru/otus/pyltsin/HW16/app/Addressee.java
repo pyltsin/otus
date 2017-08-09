@@ -9,7 +9,5 @@ import ru.otus.pyltsin.HW16.messageSystem.TypeAddress;
 public interface Addressee {
     Address getAddress();
 
-    TypeAddress getTypeAddress();
-
     void init();
 }

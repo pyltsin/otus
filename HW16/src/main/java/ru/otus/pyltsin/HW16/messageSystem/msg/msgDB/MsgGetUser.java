@@ -9,7 +9,7 @@ import ru.otus.pyltsin.HW16.messageSystem.msg.msgFrontend.MsgGetUserAnswer;
 /**
  * Created by Pyltsin on 24.07.2017.
  */
-public class MsgGetUser extends MsgToBDService {
+public class MsgGetUser extends MsgToDBService {
 
     private final int idServlet;
     private final int idUser;

@@ -12,7 +12,6 @@ import ru.otus.pyltsin.HW16.dao.DAOImpl;
 import ru.otus.pyltsin.HW16.helper.PropertiesHelper;
 import ru.otus.pyltsin.HW16.messageSystem.Address;
 import ru.otus.pyltsin.HW16.messageSystem.MessageSystemContext;
-import ru.otus.pyltsin.HW16.messageSystem.TypeAddress;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,12 +51,6 @@ public class DBServiceImpl implements DBService, Addressee {
     public Address getAddress() {
         return address;
     }
-
-    @Override
-    public TypeAddress getTypeAddress() {
-        return TypeAddress.DB;
-    }
-
 
     private SessionFactory createSessionFactory(Configuration configuration) {
         return configuration.buildSessionFactory();

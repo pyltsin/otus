@@ -20,7 +20,7 @@ public class MsgGetListIdAnswer extends MsgToFrontend {
         super(from, to, MsgGetListIdAnswer.class);
         this.ids = ids;
         this.idServlet = idServlet;
-        LOG.debug("MsgGetSizeAnswer");
+        LOG.debug("MsgGetListAnswer");
     }
 
     @Override

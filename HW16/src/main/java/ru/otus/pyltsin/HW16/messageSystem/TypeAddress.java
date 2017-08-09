@@ -5,13 +5,4 @@ package ru.otus.pyltsin.HW16.messageSystem;
  */
 public enum TypeAddress {
     DB, FRONTEND, MESSAGE_SERVER;
-
-    public static boolean contains(String id) {
-        for (TypeAddress typeAddress : TypeAddress.values()) {
-            if (typeAddress.name().equals(id)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

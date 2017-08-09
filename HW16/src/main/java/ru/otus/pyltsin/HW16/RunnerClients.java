@@ -13,6 +13,7 @@ import ru.otus.pyltsin.HW16.front.FrontendServiceImpl;
 import ru.otus.pyltsin.HW16.messageSystem.Address;
 import ru.otus.pyltsin.HW16.messageSystem.LocalMessageSystem;
 import ru.otus.pyltsin.HW16.messageSystem.MessageSystemContext;
+import ru.otus.pyltsin.HW16.messageSystem.TypeAddress;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
@@ -22,8 +23,6 @@ import java.lang.management.ManagementFactory;
  * Created by Pyltsin on 31.07.2017.
  */
 public class RunnerClients {
-    private static final String NAME_FRONTEND = "frontend";
-    private static final String NAME_DB = "db";
     private final static String PUBLIC_HTML = "HW16/public_html";
 
     /**
@@ -62,12 +61,20 @@ public class RunnerClients {
         int portForWeb = 0;
 
         FrontendServiceImpl fs = null;
-        switch (args[0]) {
-            case NAME_DB:
-                service = new DBServiceImpl(context, new Address(address));
+
+        TypeAddress serviceStart;
+        try {
+            serviceStart = TypeAddress.valueOf(args[0].toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new UnsupportedOperationException("Not found service");
+        }
+
+        switch (serviceStart) {
+            case DB:
+                service = new DBServiceImpl(context, new Address(address, serviceStart));
                 break;
-            case NAME_FRONTEND:
-                fs = new FrontendServiceImpl(context, new Address(address));
+            case FRONTEND:
+                fs = new FrontendServiceImpl(context, new Address(address, serviceStart));
                 service = fs;
                 try {
                     portForWeb = Integer.parseInt(args[4]);

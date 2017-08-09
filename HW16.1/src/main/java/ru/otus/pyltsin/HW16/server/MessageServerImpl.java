@@ -70,9 +70,9 @@ public class MessageServerImpl implements MessageServerImplMBean, Addressee, Mes
                 Msg msg = channel.pool();
                 if (msg != null) {
                     logger.debug("Get the message: " + msg.toString());
-                    if (msg.getTypeReciever() == TypeAddress.MESSAGE_SERVER || msg.getTo().equals(address)) {
+                    if (msg.getTo().getTypeAddress() == TypeAddress.MESSAGE_SERVER) {
                         logger.debug("Get the message for server: " + msg.toString());
-                        serverGetMessage(msg, channel);
+                        registerChannel(channel, msg.getFrom());
                     } else {
                         Address addressTo = msg.getTo();
                         logger.debug("Get the message for : " + addressTo.getId());
@@ -80,11 +80,8 @@ public class MessageServerImpl implements MessageServerImplMBean, Addressee, Mes
                         logger.debug("sendMessages" + addressSend.getId());
                         msg.setTo(addressSend);
                         logger.debug("sendMessages to : " + addressSend.getId());
-                        if (addressSend != null) {
-                            channelsWithAdress.get(msg.getTypeReciever()).get(addressSend).send(msg);
-                        } else {
-                            logger.error("address send not found for : " + addressTo.getId());
-                        }
+                        TypeAddress typeAddress = addressSend.getTypeAddress();
+                        channelsWithAdress.get(typeAddress).get(addressSend).send(msg);
                     }
                 }
             }
@@ -96,7 +93,7 @@ public class MessageServerImpl implements MessageServerImplMBean, Addressee, Mes
     private Address getAddressWithBalanced(Msg msg) {
         Address addressTo = msg.getTo();
         logger.debug("try search" + addressTo.getId());
-        TypeAddress typeAddress = msg.getTypeReciever();
+        TypeAddress typeAddress = msg.getTo().getTypeAddress();
         if (typeAddress.equals(TypeAddress.DB)) {
             if (!channelsWithAdress.containsKey(typeAddress)) {
                 logger.debug("not found:" + addressTo.getId());
@@ -120,13 +117,6 @@ public class MessageServerImpl implements MessageServerImplMBean, Addressee, Mes
         }
     }
 
-    private void serverGetMessage(Msg msg, MsgChannel channel) {
-        if (msg instanceof MsgServer && msg.getTypeReciever().equals(TypeAddress.MESSAGE_SERVER)) {
-            ((MsgServer) msg).execServer(this, channel);
-        }
-    }
-
-
     @Override
     public boolean getRunning() {
         return true;
@@ -146,12 +136,8 @@ public class MessageServerImpl implements MessageServerImplMBean, Addressee, Mes
     }
 
     @Override
-    public TypeAddress getTypeAddress() {
-        return TypeAddress.MESSAGE_SERVER;
-    }
-
-    @Override
-    public void registerChannel(MsgChannel channel, Address from, TypeAddress typeAddress) {
+    public void registerChannel(MsgChannel channel, Address from) {
+        TypeAddress typeAddress = from.getTypeAddress();
         if (!channelsWithAdress.containsKey(typeAddress)) {
             channelsWithAdress.put(typeAddress, new HashMap<>());
             logger.debug("map create new type" + typeAddress);
