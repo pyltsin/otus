@@ -17,5 +17,4 @@ public interface MsgChannel {
     void close() throws IOException;
 
     void init();
-
 }

@@ -1,8 +1,6 @@
 package ru.otus.pyltsin.HW16.messageSystem.msg.msgServer;
 
 import ru.otus.pyltsin.HW16.app.Addressee;
-import ru.otus.pyltsin.HW16.app.MessageServer;
-import ru.otus.pyltsin.HW16.app.MsgChannel;
 import ru.otus.pyltsin.HW16.messageSystem.Address;
 import ru.otus.pyltsin.HW16.messageSystem.LocalMessageSystem;
 import ru.otus.pyltsin.HW16.messageSystem.Msg;
